@@ -1,10 +1,6 @@
 import { useLoaderData } from "remix";
-
-export type Task = {
-	name: string,
-	id: string,
-	completed: boolean,
-}
+import SingleTask from "~/task";
+import type { Task } from "~/task";
 
 export const loader = async () => {
 	return [
@@ -34,7 +30,7 @@ export default function app() {
 				<h2>Here are your tasks:</h2>
 				<ul>
 					{ tasks.map(task => (
-						<li>{task.name} <button>Complete</button> <button>Remove</button></li>
+						<li key={task.id}><SingleTask task={task}/></li>
 					))}
 				</ul>
 			</div>
